@@ -109,3 +109,8 @@ body{
 
     }
 }
+@media screen and (max-width: 768px){
+    .top{
+        width: 50%;
+    }
+}
