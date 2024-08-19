@@ -356,3 +356,112 @@ svg{
     background: #000;
     opacity: .85;
 }
+.lines{
+    opacity: 0;
+    width: 10%;
+    height: 2vh;
+    background-color: #fff;
+}
+@keyframes circle {
+    0%{
+        scale: 1;
+        bottom: 80vh;
+    }
+    25%{
+        bottom: 80vh;
+    }
+    37.5%{
+        bottom: 0;
+    }
+    50%{
+        bottom: 20%;
+    }
+    62.5%{
+        bottom: 0;
+    }
+    75%{
+        bottom: 10%;
+    }
+    81.25%{
+        bottom: 0%;
+    }
+    87.5%{
+        bottom: 2.5%;
+    }
+    100%{
+        bottom: 0;
+        scale: 1;
+    }
+}
+@keyframes creation {
+    0%{
+        bottom: 0vh;
+        left: calc(50% - 25px);
+    }
+    80%{
+        bottom: 70vh;
+        left: calc(50% - 25px);
+        border-radius: 0;
+    }
+    100%{
+        bottom: 70vh;
+        left: 5%;
+        width: 40%;
+        height: 10vh;
+        background-color: #fff;
+        border-radius: 0;
+    }
+}
+@keyframes creation1 {
+    0%{
+        bottom: 0vh;
+        left: calc(50% - 25px);
+    }
+    80%{
+        bottom: 55vh;
+        left: calc(50% - 25px);
+        border-radius: 0;
+    }
+    100%{
+        bottom: 55vh;
+        left: 5%;
+        width: 40%;
+        height: 10vh;
+        background-color: #fff;
+        border-radius: 0;
+    }
+}
+@keyframes creation2 {
+    0%{
+        bottom: 0vh;
+        left: calc(50% - 25px);
+    }
+    80%{
+        bottom: 40vh;
+        left: calc(50% - 25px);
+        border-radius: 0;
+    }
+    100%{
+        bottom: 40vh;
+        left: 5%;
+        width: 40%;
+        height: 10vh;
+        background-color: #fff;
+        border-radius: 0;
+    }
+}
+.option{
+    position: fixed;
+    bottom: 70vh;
+    width: 40%;
+    height: 10vh;
+    background-color: #fff;
+    border-radius: 0;
+    left: 5%;
+}
+.option:nth-child(2){
+    bottom: 55vh;
+}
+.option:nth-child(3){
+    bottom: 40vh;
+}

@@ -3,16 +3,21 @@ let topy = document.querySelector(".top")
 let title = document.querySelector(".title")
 const btn = document.querySelector(".menu");
 const menu = document.querySelector(".smenu");
-const valueInPixelsX = window.innerWidth;
-const valueInPixelsY = window.innerHeight * 0.17;
+let lines = document.querySelector(".lines")
+let secondPage = document.querySelector(".plan")
+const widthPx = window.innerWidth;
+const heightPx = window.innerHeight * 0.17;
 const vh = window.innerHeight / 100;
 const topValue = 4.5 * vh - 25; 
 let lastscroll = 0;
+let z = 0;
+let isCircle = true;
+let endCircle = true;
 
 function scrollControl(){
 window.addEventListener('scroll', function() {
 
-    // console.log('Scroll Y:', window.scrollY);
+    console.log('Scroll Y:', window.scrollY);
     if(window.scrollY > lastscroll){
         topy.style.height = `9vh`
         btn.style.transition = '1s'
@@ -21,22 +26,68 @@ window.addEventListener('scroll', function() {
         setTimeout(() => {
             btn.style.transition = '';
         }, 1000);
-        // valueInPixelsY = window.innerHeight * 0.09 aby zmieniał kolor te po zmniejszeniu
+        // heightPx = window.innerHeight * 0.09 aby zmieniał kolor te po zmniejszeniu
     }
-    
+
+    if(window.scrollY > 50 && isCircle){
+    lines.style.width = `${window.scrollY / 10}%`
+    z += 0.008;
+    lines.style.opacity = z;
+    }
+    if(window.scrollY >= 820 && endCircle){
+        isCircle = false;
+        endCircle = false;
+        secondPage.style.opacity = '1'
+        lines.style.transition = "1s"
+        lines.style.position = 'fixed'
+        lines.style.bottom = '0vh'
+        lines.style.left = 'calc(50% - 25px)'
+        lines.style.width = '50px'
+        lines.style.height = '50px'
+        lines.style.borderRadius = '50%'
+        lines.style.opacity = '1'
+        lines.style.animation = 'circle 4s'
+        setTimeout(() => {
+            lines.style.animation = ""
+
+            let option = lines.cloneNode(true)
+            let option1 = lines.cloneNode(true)
+            let option2 = lines.cloneNode(true)
+
+            secondPage.appendChild(option)
+            secondPage.appendChild(option1)
+            secondPage.appendChild(option2)
+            secondPage.removeChild(lines)
+
+            option.style.animation = 'creation 4s'
+            option1.style.animation = 'creation1 4s'
+            option2.style.animation = 'creation2 4s'
+            setTimeout(() => {
+                option.style = ""
+                option1.style = ""
+                option2.style = ""
+                option.className = 'option'
+                option1.className = 'option'
+                option2.className = 'option'
+                secondPage.style.opacity = '0.85'
+            }, 4000);
+
+        }, 4000);
+    }
 
     lastscroll = window.scrollY
+
 });
 }
-
+// kulkapo zleceniu się duplikuje w miejscu i odlatuje do odpowiednich środków aby zamienić się później w odpowiednie klasy
 function show() {
     menu.classList.toggle("active");
     // body.style.transition = "1s"
-    // body.style.marginRight = `${valueInPixelsX}px`
+    // body.style.marginRight = `${widthPx}px`
     body.style.cursor = "none"
     btn.textContent = "close"
     btn.style.width = "100px"
-    // for (let i = valueInPixelsX - valueInPixelsX * 5 / 100; i <= x; i++) {
+    // for (let i = widthPx - widthPx * 5 / 100; i <= x; i++) {
     //     btn.style.left
     // }
     // btn.style.zIndex = "1100"// jezeli właćzys to jeszcze będziesz w stanie wycofać menu
@@ -51,7 +102,7 @@ function show() {
     
         // btn.style.width = '50px' 
     
-        if(y > valueInPixelsY){
+        if(y > heightPx){
             btn.style.borderColor = "#fff"
             btn.style.color = "#fff"
         } else {
@@ -67,3 +118,4 @@ btn.addEventListener("click", show);
 //po najechaniu na tekst zrób podkreślenie czarną kreską albo ramka zmieniająca szerokośc jeszcze bordera lub odwó®cenie tekstu w rotatex z pobranie napisu jako tablicy i dla kadej literki po 1 s odstępu
 //shaking effect kreski na koniec zlatują się do sukces i za zaczyna się z forem dotwarzanie przycisków typu menu i spamienie nimi z róznych miejsc funkcja rand w left ale top 0 i deszz w dół nimi z matrixem sth
 //zmniejsz troche wideo by faktycznie działało po opublikowaniu
+//chatgpt uporządkuj i zrób czytelny
