@@ -1,16 +1,71 @@
 *{
     user-select: none;
     -webkit-user-select: none;
-    cursor: default;
+    scroll-behavior: smooth;
 }
 body{
     margin: 0;
-    overflow: hidden;
+    /* overflow: hidden; chcesz by nie bylo scrollowania?*/
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+    cursor: default;
 }
+.smenu{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    transition: 1s;
+    right: -100%;
+}
+.smenu.active{
+    transition: 1s;
+    right: 0;
+}
+/* .bttn{
+    position: fixed;
+    top: calc(8.5vh - 25px);
+    left: 5%;
+    width: 150px;
+    height: 50px;
+    color: #000;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    transition: color 0.5s ease;
+    z-index: 999;
+    transition: 1s;
+}
+.bttn:hover{
+    top: 60%;
+    right: 15%;
+}
+.bttn:hover .full{
+    margin-top: 0px;
+    height: 50px;
+    transition: 1s;
+    z-index: -1;
+} */
+/* .full{
+    margin-top: 50px;
+    position: absolute;
+    transition: 1s;
+    width: 100%;
+    z-index: 1;
+    height: 0px;
+    background-color: aquamarine;
+} */
+
 .timer{
     width: 100%;
     height: 100vh;
@@ -34,14 +89,13 @@ body{
     justify-content: center;
     border: 1px solid #000;
     border-radius: 50px;
-    overflow: hidden;
     background-color: transparent;
     cursor: pointer;
+    overflow: hidden;
     outline: none;
     transition: color 0.5s ease;
     z-index: 999;
 }
-
 .menu::before {
     content: "";
     position: absolute;
@@ -55,18 +109,33 @@ body{
 }
 
 .menu:hover::before {
-    top: 0;
+    top: 0; /*przed najechaniem top jest 0 potem akcja*/
 }
 
 .menu:hover {
+    transition: 1s;
+    color: #fff;
+    scale: 1.05;
+}
+.menu:hover svg{
+    transition: 1s;
+    left: 20%;
+    color: #000;
+}
+
+svg{
+    transition: 1s;
+    position: absolute;
+    left: -10%;
     color: #fff;
 }
+
 .time{
     color: rgba(255, 255, 255, .5);
 }
+
 .time:hover .widther{
     animation-play-state: paused;
-
 }
 .widther{
     animation: widther 2s infinite;
@@ -97,7 +166,7 @@ body{
     }
 }
 .timer video {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     min-width: 100%;
@@ -117,14 +186,153 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 1s;
+}
+.line{
+    position: fixed;
+    width: 17vh;
+    height: 10px;
+    background-color: #c991e5;
+    left: 0;
+    top: 0;
+    animation: move 8s;
+    transition: 1s;
+    visibility: hidden;
+    border: 1px solid #000;
+}
+.line1{
+    position: fixed;
+    width: 17vh;
+    height: 10px;
+    background-color: #91d1e5;
+    right: 0;
+    top: 0;
+    animation: move1 8s;
+    transition: 1s;
+    visibility: hidden;
+    border: 1px solid #000;
+}
+
+@keyframes move {
+    0%{
+        left: 0;
+        top: 0;
+        visibility: visible;
+    }
+    20%{
+        /* transform: rotate(90deg);
+        top: 8.5vh;
+        left: calc(-8.5vh + 10px); */
+        transform: rotate(0deg);
+        width: 10px;
+        height: 17vh;
+        left: 0;
+        top: 0;
+    }
+    40%{
+        top: 8.5vh;
+        left: 100vh;
+        transform: rotate(1800deg);
+        width: 10px;
+        height: 17vh;
+    }
+    60%{
+        top: 0;
+        left: 100vh;
+        width: 17vh;
+        height: 10px;
+        transform: rotate(0deg);
+    }
+    80%{
+        top: 0;
+        left: 100vh;
+    }
+    100%{
+        top: 0;
+        left: 0;
+        width: 17vh;
+        height: 10px;
+        visibility: visible;
+    }
+}
+@keyframes move1 {
+    0%{
+        left: 0;
+        top: 0;
+        visibility: visible;
+    }
+    10%{
+        transform: rotate(45deg);
+    }
+    20%{
+        left: 20vh;
+        top: calc(17vh - 10px);
+        transform: rotate(0deg);
+    }
+    30%{
+        transform: rotate(-45deg);
+    }a
+    40%{
+        left: 40vh;
+        top: 0;
+        transform: rotate(0deg)
+    }
+    59%{
+        top: 0;
+        left: 40vh;
+        transform: rotate(0deg);
+    }
+    60%{
+        top: 4.5vh;
+    }
+    70%{
+        transform: rotate(1440deg);
+        top: calc(6vh);
+        left: calc(95% - 16vh);
+        width: 17vh;
+        height: 10px;
+        border-radius: 0;
+        border: 0;
+    }
+    80%{
+        transform: rotate(0deg);
+        top: calc(6vh);
+        left: calc(95% - 16vh);
+        border: 1px solid #000;
+        border-radius: 50px;
+        width: 150px;
+        height: 50px;
+    }
+    90%{
+        border: 1px solid #000;
+        border-radius: 50px;
+        width: 150px;
+        height: 50px;
+    }
+    95%{
+        width: 17vh;
+        height: 10px;
+        border-radius: 0;
+        border: 0;
+    }
+    100%{
+        left: calc(100% - 17vh);
+        right: 0;
+        top: 0;
+        visibility: visible;
+    }
 }
 .colorful {
-    animation: gradientShift 4s linear infinite;
+    animation: gradientShift 2s linear infinite;
     background: linear-gradient(45deg, #e66465, #e591bb, #c991e5, #91d1e5, #9198e5, #e591bb, #e66465);
     background-size: 300% 300%;
     filter: blur(3px);
+    transition: 1s;
 }
-
+.colorful:hover{
+    transition: 1s;
+    filter: blur(0.5px);
+}
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -139,4 +347,10 @@ body{
         top: calc(8.5vh - 9px);
         left: 5%;
     }
+}
+.plan{
+    width: 100%;
+    height: 100vh;
+    background: #000;
+    opacity: .85;
 }
