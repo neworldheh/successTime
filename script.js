@@ -1,5 +1,6 @@
 let body = document.querySelector("body")
 let topy = document.querySelector(".top")
+let title = document.querySelector(".title")
 const btn = document.querySelector(".menu");
 const menu = document.querySelector(".smenu");
 const valueInPixelsX = window.innerWidth;
@@ -16,6 +17,7 @@ window.addEventListener('scroll', function() {
         topy.style.height = `9vh`
         btn.style.transition = '1s'
         btn.style.top = `${topValue}px`;
+        title.style.top = `${4.5 * vh - 9}px`
         setTimeout(() => {
             btn.style.transition = '';
         }, 1000);

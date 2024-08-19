@@ -341,11 +341,13 @@ svg{
         background-position: 100% 50%;
     }
 }
+
 @media screen and (max-width: 768px){
     .title{
         position: fixed;
         top: calc(8.5vh - 9px);
         left: 5%;
+        transition: 1s;
     }
 }
 .plan{
