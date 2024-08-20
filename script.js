@@ -34,7 +34,7 @@ window.addEventListener('scroll', function() {
     z += 0.008;
     lines.style.opacity = z;
     }
-    if(window.scrollY >= 820 && endCircle){
+    if(window.scrollY >= 750 && endCircle){
         isCircle = false;
         endCircle = false;
         secondPage.style.opacity = '1'
