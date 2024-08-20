@@ -351,12 +351,14 @@ svg{
     }
 }
 .plan{
+    position: relative;
     width: 100%;
     height: 100vh;
     background: #000;
     opacity: .85;
 }
 .lines{
+    position: absolute;
     opacity: 0;
     width: 10%;
     height: 2vh;
@@ -403,12 +405,20 @@ svg{
         left: calc(50% - 25px);
         border-radius: 0;
     }
+    90%{
+        bottom: 70vh;
+        left: 5%;
+        width: 40%;
+        height: 20vh;
+        background-color: #fff;
+        border-radius: 0;
+    }
     100%{
         bottom: 70vh;
         left: 5%;
         width: 40%;
-        height: 10vh;
-        background-color: #fff;
+        height: 20vh;
+        background-color: #666666;
         border-radius: 0;
     }
 }
@@ -418,16 +428,24 @@ svg{
         left: calc(50% - 25px);
     }
     80%{
-        bottom: 55vh;
+        bottom: 45vh;
         left: calc(50% - 25px);
         border-radius: 0;
     }
-    100%{
-        bottom: 55vh;
+    90%{
+        bottom: 45vh;
         left: 5%;
         width: 40%;
-        height: 10vh;
+        height: 20vh;
         background-color: #fff;
+        border-radius: 0;
+    }
+    100%{
+        bottom: 45vh;
+        left: 5%;
+        width: 35%;
+        height: 20vh;
+        background-color: #131313;
         border-radius: 0;
     }
 }
@@ -437,31 +455,69 @@ svg{
         left: calc(50% - 25px);
     }
     80%{
-        bottom: 40vh;
+        bottom: 20vh;
         left: calc(50% - 25px);
         border-radius: 0;
     }
-    100%{
-        bottom: 40vh;
+    90%{
+        bottom: 20vh;
         left: 5%;
         width: 40%;
-        height: 10vh;
+        height: 20vh;
+        background-color: #fff;
+        border-radius: 0;
+    }
+    100%{
+        bottom: 20vh;
+        left: 5%;
+        width: 30%;
+        height: 20vh;
         background-color: #fff;
         border-radius: 0;
     }
 }
 .option{
-    position: fixed;
+    position: absolute;
     bottom: 70vh;
     width: 40%;
-    height: 10vh;
-    background-color: #fff;
-    border-radius: 0;
+    height: 20vh;
+    background-color: #666666;
     left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    font-size: 30px;
+    transition: 0.5s;
+}
+.option p {
+    transition: 1s;
 }
 .option:nth-child(2){
-    bottom: 55vh;
+    background-color: #131313;
+    bottom: 45vh;
+    width: 35%;
+    cursor: pointer;
 }
 .option:nth-child(3){
-    bottom: 40vh;
+    background-color: #fff;
+    bottom: 20vh;
+    width: 30%;
+    cursor: pointer;
 }
+.option:nth-child(1):hover p{
+    transform: scaleY(-1);
+    transition: 1s;
+}
+.option:hover{
+    transition: 1s;
+    filter: blur(2px);
+}
+.star {
+    position: fixed;
+    font-size: 24px; /* Rozmiar gwiazdek */
+    pointer-events: none; /* Ignorowanie kliknięć */
+    transition: transform 5s ease-in, opacity 5s ease-in;
+}
+/* .option:hover .p{
+ zrob wszedzie podkreslenie inline od dolu tak by linia przechodzila po najechaniu i odjezcała
+} */

@@ -39,7 +39,6 @@ window.addEventListener('scroll', function() {
         endCircle = false;
         secondPage.style.opacity = '1'
         lines.style.transition = "1s"
-        lines.style.position = 'fixed'
         lines.style.bottom = '0vh'
         lines.style.left = 'calc(50% - 25px)'
         lines.style.width = '50px'
@@ -62,6 +61,7 @@ window.addEventListener('scroll', function() {
             option.style.animation = 'creation 4s'
             option1.style.animation = 'creation1 4s'
             option2.style.animation = 'creation2 4s'
+
             setTimeout(() => {
                 option.style = ""
                 option1.style = ""
@@ -69,7 +69,40 @@ window.addEventListener('scroll', function() {
                 option.className = 'option'
                 option1.className = 'option'
                 option2.className = 'option'
-                secondPage.style.opacity = '0.85'
+                secondPage.style.opacity = '0.85' //opacity tego przycisku
+                option.innerHTML = '<p>est. 2024™ •</p>'
+                option1.textContent = 'CELESTE ✨'
+                option2.innerHTML = '¶F<a style="color:#c991e5;">I</a><a style="color:#91d1e5;">F</a><a style="color:#9198e5;">I</a> WALKER •';
+                option1.addEventListener('mouseover', function(){
+                    let stars = [];
+                    for (let i = 0; i < 50; i++) {
+                        let star = document.createElement('div');
+                        star.classList.add('star');
+                        star.textContent = '✨';
+                        
+                        let randomX = Math.random() * window.innerWidth;
+                        let randomY = Math.random() * window.innerHeight;
+                
+                        star.style.left = `${randomX}px`;
+                        star.style.top = `${randomY}px`;
+                        star.style.transition =  `transform ${Math.random() * 5}s ease-in, opacity 5s ease-in`
+
+                        document.body.appendChild(star);
+                        stars.push(star);
+                
+                        setTimeout(() => {
+                            star.style.transform = `translateY(${window.innerHeight - randomY}px) rotate(${Math.random() * 720 - 360}deg)`;
+                            star.style.opacity = '0';
+                        }, 200);
+                    }
+                
+                    
+                    setTimeout(() => {
+                        stars.forEach(star => {
+                            star.remove();
+                        });
+                    }, 5000);
+                });
             }, 4000);
 
         }, 4000);
@@ -119,3 +152,4 @@ btn.addEventListener("click", show);
 //shaking effect kreski na koniec zlatują się do sukces i za zaczyna się z forem dotwarzanie przycisków typu menu i spamienie nimi z róznych miejsc funkcja rand w left ale top 0 i deszz w dół nimi z matrixem sth
 //zmniejsz troche wideo by faktycznie działało po opublikowaniu
 //chatgpt uporządkuj i zrób czytelny
+//kontroluj zdarzenia i pokazywanie bloków za pomocą vh i przekroczenia wartośći np 1vh czy 1.2vh
