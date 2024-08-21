@@ -22,8 +22,26 @@ body{
     right: -100%;
 }
 .smenu.active{
-    transition: 1s;
+    transition: .5s;
     right: 0;
+}
+.moption{
+    color: white;
+    width: 100%;
+    height: 50vh;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.moption1{
+    color: white;
+    width: 100%;
+    height: 50vh;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /* .bttn{
     position: fixed;
@@ -95,6 +113,28 @@ body{
     outline: none;
     transition: color 0.5s ease;
     z-index: 999;
+}
+.nmenu{
+    position: fixed;
+    top: calc(8.5vh - 25px);
+    right: 5%;
+    width: 100px;
+    height: 50px;
+    color: #000;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #000;
+    border-radius: 50px;
+    background-color: transparent;
+    cursor: none;
+    overflow: hidden;
+    outline: none;
+    transition: color 0.5s ease;
+    z-index: 1001;
+    border-right: dashed;
+    border-left: dashed;
 }
 .menu::before {
     content: "";
@@ -187,6 +227,52 @@ svg{
     align-items: center;
     justify-content: center;
     transition: 1s;
+}
+.title{
+    font-size: 16px;
+    transition: 1s;
+}
+@keyframes reel {
+    0%{
+        transform: translateX(0vw);
+        font-size: 16px;
+    }
+    25%{
+        font-size: 16px;
+    }
+    50%{
+        transform: translateX(100vw);
+        font-size: 16px;
+    }
+    50.01%{
+        transform: translateX(-100vw);
+        font-size: 16px;
+    }
+    100%{
+        transform: translateX(0vw);
+        font-size: 16px;
+    }
+}
+@keyframes reels {
+    0%{
+        transform: translateX(0vw);
+        font-size: 16px;
+    }
+    25%{
+        font-size: 16px;
+    }
+    50%{
+        transform: translateX(100vw);
+        font-size: 16px;
+    }
+    50.01%{
+        transform: translateX(-100vw);
+        font-size: 16px;
+    }
+    83.33%{
+        transform: translateX(0vw);
+        font-size: 16px;
+    }/*chodzi o to zeby animacja leciala rowno ale reels polecial 100vw 1s pozniej bo reszta znowu poleci a jeden zostanie */
 }
 .line{
     position: fixed;
@@ -494,15 +580,20 @@ svg{
 }
 .option:nth-child(2){
     background-color: #131313;
+    color: aliceblue;
     bottom: 45vh;
     width: 35%;
     cursor: pointer;
+    width: 35%;
+    height: 20vh;
 }
 .option:nth-child(3){
     background-color: #fff;
     bottom: 20vh;
     width: 30%;
     cursor: pointer;
+    width: 30%;
+    height: 20vh;
 }
 .option:nth-child(1):hover p{
     transform: scaleY(-1);
@@ -521,3 +612,4 @@ svg{
 /* .option:hover .p{
  zrob wszedzie podkreslenie inline od dolu tak by linia przechodzila po najechaniu i odjezcała
 } */
+ 

@@ -6,19 +6,44 @@ const menu = document.querySelector(".smenu");
 let lines = document.querySelector(".lines")
 let secondPage = document.querySelector(".plan")
 const widthPx = window.innerWidth;
-const heightPx = window.innerHeight * 0.17;
+let heightPx = window.innerHeight * 0.17;
 const vh = window.innerHeight / 100;
 const topValue = 4.5 * vh - 25; 
 let lastscroll = 0;
 let z = 0;
 let isCircle = true;
 let endCircle = true;
+let isRoll = false;
 
+title.addEventListener('mouseover', function(){
+    body.style.overflow = "hidden"
+    title.style.animation = "reel 5s"
+    title.style.zIndex = "2000"
+    let titles = []
+    for (let i = 0; i < 10; i++) {
+        titles[i] = title.cloneNode(true)
+        titles[i].style.animation = "reels 6s"
+        titles[i].style.float = "left"
+        topy.appendChild(titles[i])
+    }
+
+    setTimeout(() => {
+        //czyszczenie po
+        body.style.overflow = "auto"
+        title.style.animation = ""
+        title.xIndex = ""
+
+        titles.forEach(element => {
+            element.remove();
+        });
+    }, 5000);
+});
 function scrollControl(){
 window.addEventListener('scroll', function() {
 
-    console.log('Scroll Y:', window.scrollY);
+    // console.log('Scroll Y:', window.scrollY);
     if(window.scrollY > lastscroll){
+        isRoll = true
         topy.style.height = `9vh`
         btn.style.transition = '1s'
         btn.style.top = `${topValue}px`;
@@ -26,24 +51,29 @@ window.addEventListener('scroll', function() {
         setTimeout(() => {
             btn.style.transition = '';
         }, 1000);
-        // heightPx = window.innerHeight * 0.09 aby zmieniał kolor te po zmniejszeniu
-    }
+        // menuChange(heightPx = window.innerHeight * 0.09)
+        heightPx = window.innerHeight * 0.09 //aby zmieniał kolor te po zmniejszeniu
+    }//wielkie napist sekcji Timer
+    //option
 
     if(window.scrollY > 50 && isCircle){
     lines.style.width = `${window.scrollY / 10}%`
     z += 0.008;
     lines.style.opacity = z;
     }
-    if(window.scrollY >= 750 && endCircle){
+    if(window.scrollY >= 820 && endCircle){
         isCircle = false;
         endCircle = false;
+        window.scrollTo(0, document.body.scrollHeight)
         secondPage.style.opacity = '1'
         lines.style.transition = "1s"
         lines.style.bottom = '0vh'
         lines.style.left = 'calc(50% - 25px)'
         lines.style.width = '50px'
         lines.style.height = '50px'
+        setTimeout(() => {
         lines.style.borderRadius = '50%'
+        }, 1000);
         lines.style.opacity = '1'
         lines.style.animation = 'circle 4s'
         setTimeout(() => {
@@ -113,43 +143,58 @@ window.addEventListener('scroll', function() {
 });
 }
 // kulkapo zleceniu się duplikuje w miejscu i odlatuje do odpowiednich środków aby zamienić się później w odpowiednie klasy
-function show() {
-    menu.classList.toggle("active");
-    // body.style.transition = "1s"
-    // body.style.marginRight = `${widthPx}px`
-    body.style.cursor = "none"
-    btn.textContent = "close"
-    btn.style.width = "100px"
-    // for (let i = widthPx - widthPx * 5 / 100; i <= x; i++) {
-    //     btn.style.left
-    // }
-    // btn.style.zIndex = "1100"// jezeli właćzys to jeszcze będziesz w stanie wycofać menu
+function updateCursorPosition(event) {
+    let x = event.clientX - 50;
+    let y = event.clientY - 25;
 
-    document.addEventListener('mousemove', updateCursorPosition);
-    function updateCursorPosition(event) {
-        let x = event.clientX - 50;
-        let y = event.clientY - 25;
-    
-        btn.style.left = `${x}px`;
-        btn.style.top = `${y}px`;
-    
-        // btn.style.width = '50px' 
-    
-        if(y > heightPx){
-            btn.style.borderColor = "#fff"
-            btn.style.color = "#fff"
-        } else {
-            btn.style.borderColor = "#000"
-            btn.style.color = "#000"
+    btn.style.left = `${x}px`;
+    btn.style.top = `${y}px`;
+    if(y > heightPx){
+        btn.style.borderColor = "#fff"
+        btn.style.color = "#fff"
+    } else {
+        btn.style.borderColor = "#000"
+        btn.style.color = "#000"
+    }
+    // btn.style.width = '50px' 
+}
+function show() {
+    menu.classList.toggle("active")
+    if(menu.classList.contains("active")){
+        body.style.transition = "1s"
+        body.style.marginRight = `100%`
+        // topy.style.right = '100%'
+        topy.style.right = '0'
+        body.style.overflow = "hidden"
+        body.style.cursor = "default"
+        btn.className = "nmenu"
+        // btn.style.pointerEvents = 'none' brak hover klikniec i wszystkiego
+        //poco wsyzstko pisac od nowa jak mozna zapisa stary stan za pomocą zmieniania klas np
+        btn.textContent = "close"
+        menu.innerHTML = '<div class="moption">TIMER</div><div class="moption1">OPTIONS</div>'
+        
+        document.addEventListener('mousemove', updateCursorPosition);
+        // for (let i = widthPx - widthPx * 5 / 100; i <= x; i++) {
+        //     btn.style.left
+        // }
+        // btn.style.zIndex = "1100"// jezeli właćzys to jeszcze będziesz w stanie wycofać menu
+    }else{
+        body.style.transition = "1s"
+        body.style.marginRight = `0`
+        topy.style.right = '0'
+        body.style.overflow = "auto"
+        btn.className = "menu" // Zmieniamy klasę z powrotem na "menu"
+        btn.textContent = "menu"
+        btn.removeAttribute("style");
+        if(isRoll){
+        btn.style.transition = '1s'
+        btn.style.top = `${topValue}px`;
+        setTimeout(() => {
+            btn.style.transition = '';
+        }, 1000);
         }
+        document.removeEventListener('mousemove', updateCursorPosition);
     }
 }
 scrollControl()
 btn.addEventListener("click", show);
-//aby zmienić wszystko z powrotem trzbea pobrać poprzedni stan rzeczy bedzie szybciej
-//naucz się onscroll animacjii
-//po najechaniu na tekst zrób podkreślenie czarną kreską albo ramka zmieniająca szerokośc jeszcze bordera lub odwó®cenie tekstu w rotatex z pobranie napisu jako tablicy i dla kadej literki po 1 s odstępu
-//shaking effect kreski na koniec zlatują się do sukces i za zaczyna się z forem dotwarzanie przycisków typu menu i spamienie nimi z róznych miejsc funkcja rand w left ale top 0 i deszz w dół nimi z matrixem sth
-//zmniejsz troche wideo by faktycznie działało po opublikowaniu
-//chatgpt uporządkuj i zrób czytelny
-//kontroluj zdarzenia i pokazywanie bloków za pomocą vh i przekroczenia wartośći np 1vh czy 1.2vh
