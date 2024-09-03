@@ -14,8 +14,10 @@ let z = 0;
 let isCircle = true;
 let endCircle = true;
 let isRoll = false;
+let over = true;
 
 title.addEventListener('mouseover', function(){
+    if(over){
     body.style.overflow = "hidden"
     title.style.animation = "reel 5s"
     title.style.zIndex = "2000"
@@ -37,6 +39,8 @@ title.addEventListener('mouseover', function(){
             element.remove();
         });
     }, 5000);
+        over = false
+    }
 });
 function scrollControl(){
 window.addEventListener('scroll', function() {
