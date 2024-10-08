@@ -65,7 +65,7 @@ window.addEventListener('scroll', function() {
     z += 0.008;
     lines.style.opacity = z;
     }
-    if(window.scrollY >= 820 && endCircle){
+    if(window.scrollY >= 600 && endCircle){
         isCircle = false;
         endCircle = false;
         window.scrollTo(0, document.body.scrollHeight)
